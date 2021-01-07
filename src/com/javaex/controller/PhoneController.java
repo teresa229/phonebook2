@@ -41,7 +41,7 @@ public class PhoneController extends HttpServlet { //상속받았다:extends Htt
 			//데이터 전달
 			request.setAttribute("pList", personList); // (정해준 이름/주소)
 			
-			//jsp에 포워드 시킨다.
+			//jsp에 포워드 시킨다. 가져다 사용하기
 			RequestDispatcher rd = request.getRequestDispatcher("./WEB-INF/list.jsp"); //jsp파일 위치 : 문자열로 알려준다.
 			rd.forward(request, response);
 		
@@ -57,15 +57,61 @@ public class PhoneController extends HttpServlet { //상속받았다:extends Htt
 			
 			//파라미터 3개 값
 			String name = request.getParameter("name");
-			String hp =request.getParameter("hp");
-			String company =request.getParameter("company");
+			String hp = request.getParameter("hp");
+			String company = request.getParameter("company");
 			
 			//personVo묶고
 			PersonVo personVo = new PersonVo(name,hp,company);
 			
-			//new dao --> 저장
+			/* dao: Insert */      //--> 저장 
 			PhoneDao phoneDao = new PhoneDao();
 			phoneDao.personInsert(personVo);
+			
+			response.sendRedirect("/phonebook2/pbc?action=list");
+			
+		} else if("update".equals(action)) {
+			System.out.println("전화번호 수정");
+			
+			//파라미터 4개 값
+			String name = request.getParameter("name");
+			String hp = request.getParameter("hp");
+			String company = request.getParameter("company");
+			int personId = Integer.parseInt(request.getParameter("id")); //Integer.parseInt String -> int 변환
+			
+			//personVo묶고
+			PersonVo personVo = new PersonVo(personId, name, hp, company);
+			
+			/* dao: Update */
+			PhoneDao phoneDao = new PhoneDao();
+			phoneDao.personUpdate(personVo);
+			
+			response.sendRedirect("/phonebook2/pbc?action=list");
+			
+		} else if("updateForm".equals(action)) {
+			System.out.println("수정 폼 정리");
+			
+			int personId = Integer.parseInt(request.getParameter("id"));
+			
+			/* dao: getPerson */   //1명 조회
+			PhoneDao phoneDao = new PhoneDao();
+			PersonVo personVo = phoneDao.getPerson(personId);
+		
+			//데이터 전달
+			request.setAttribute("updateF", personVo);
+			
+			//포워드
+			RequestDispatcher rd = request.getRequestDispatcher("./WEB-INF/updateForm.jsp");
+			rd.forward(request, response);
+			
+		} else if("delete".equals(action)) {
+			System.out.println("전화번호 삭제");
+			
+			//1개 값
+			int personId = Integer.parseInt(request.getParameter("id"));
+			
+			/* dao: Delete */
+			PhoneDao phoneDao = new PhoneDao();
+			phoneDao.personDelete(personId);
 			
 			response.sendRedirect("/phonebook2/pbc?action=list");
 		}
