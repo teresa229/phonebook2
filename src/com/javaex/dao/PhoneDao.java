@@ -67,15 +67,6 @@ public class PhoneDao {
 		getConnection();
 		
 		try {
-		    /*
-			select  person_id,
-			        name,
-			        hp,
-			        company
-			from person
-			order by person_id;
-			*/
-			
 			String query = "";
 			query += " select  person_id, ";
 			query += "         name,      ";
@@ -88,7 +79,6 @@ public class PhoneDao {
 			
 			rs = pstmt.executeQuery();
 			
-			//결과처리
 			while(rs.next()) {
 				int personId = rs.getInt("person_id");
 				String name = rs.getString("name");
@@ -103,7 +93,6 @@ public class PhoneDao {
 		    System.out.println("error:" + e);
 		}
 		
-		//자원정리
 		close();
 		
 		return phoneList;
@@ -115,12 +104,7 @@ public class PhoneDao {
                                                                          
 		getConnection();                                                           
 		                                                                           
-		try {                                                                         
-			/*
-			insert into person
-			values (seq_person_id.nextval, '김경아', '010-6666-6666', '02-6666-6666');
-			*/
-			
+		try {                                                                         			
 			String query = "";
 			query += " insert into person  ";
 			query += " values (seq_person_id.nextval, ?, ?, ?)";
@@ -132,15 +116,13 @@ public class PhoneDao {
 
 			count = pstmt.executeUpdate();
 
-			// 4. 결과처리 
 			System.out.println("[ " + count + " 건 등록되었습니다. ]");
 			System.out.println("");
 			
 		} catch (SQLException e) {                                                 
 		    System.out.println("error:" + e);                                      
 		}                                                                          
-		                                                                           
-		//자원정리                                                                     
+		                                                                                                                                                
 		close();                                                                   
 		
 		return count;
@@ -152,15 +134,7 @@ public class PhoneDao {
 		
 		getConnection();
 		
-		try {
-		    /*
-			update person
-			set name = '유정재',
-			hp = '010-9999-9999',
-			company = '02-9999-9999'
-			where person_id = 4;
-			*/
-			
+		try {			
 			String query = "";
 			query += " update person       ";
 			query += " set name = ? ,      ";
@@ -177,15 +151,13 @@ public class PhoneDao {
 			
 			count = pstmt.executeUpdate();
 			
-		    // 4.결과처리
 			System.out.println("[ " + count + " 건 수정되었습니다. ]");
 			System.out.println("");
 			
 		} catch (SQLException e) {
 		    System.out.println("error:" + e);
 		} 
-		
-		//자원정리
+
 		close();
 	
 		return count;
@@ -197,12 +169,7 @@ public class PhoneDao {
 		
 		getConnection();
 		
-		try {
-		    /*
-			delete from person
-			where person_id = 5;
-			*/
-			
+		try {			
 			String query = "";
 			query += " delete from person  ";
 			query += " where person_id = ? ";
@@ -212,15 +179,13 @@ public class PhoneDao {
 
 			count = pstmt.executeUpdate();
 			
-		    // 4.결과처리
 			System.out.println("[ " + count + " 건 삭제되었습니다. ]");
 			System.out.println("");
 			
 		} catch (SQLException e) {
 		    System.out.println("error:" + e);
 		} 
-		
-		//자원정리
+
 		close();
 		return count;
 	}
@@ -232,20 +197,7 @@ public class PhoneDao {
 		getConnection();                                                                                        
 		                                                                                                        
 		try {                                                                                                   
-		    // 3. SQL문 준비 / 바인딩 / 실행  
-			/*
-			select  person_id,
-			        name,
-			        hp,
-			        company
-			from person
-			where name like '%유%'
-			or hp like '%유%'
-			or company like '%유%'
-			order by person_id;
-			*/
-			
-			String query = "";
+		   	String query = "";
 			query += " select  person_id,  ";
 			query += "         name,       ";
 			query += "         hp,         ";
@@ -274,14 +226,12 @@ public class PhoneDao {
 				PersonVo pvo = new PersonVo(personId, name, hp, company);
 				personList.add(pvo);
 			}
-			
-			// 4. 결과 처리                                                                                                   
+			                                                                                                  
 		    System.out.println("[ 검색어 ' " + str + " ' 이(가) 포함된 리스트 입니다. ]");                                                                                                    
 		} catch (SQLException e) {                                                                              
 		    System.out.println("error:" + e);                                                                   
 		}                                                                                                       
-		                                                                                                        
-		//자원정리                                                                                                  
+		                                                                                                                                                                                                        
 		close();                                                                                                
 	
 		return personList;
@@ -300,10 +250,10 @@ public class PhoneDao {
 				query += " from person         ";
 				query += " where person_id = ? ";
 			
-				pstmt = conn.prepareStatement(query); //쿼리문 1차 완성
-				pstmt.setInt(1, personId);            //?세팅 : personId -> 완성되게 넣어준다.
+				pstmt = conn.prepareStatement(query);
+				pstmt.setInt(1, personId);            
 				
-				rs = pstmt.executeQuery();            //결과문 완성 -> 결과처리
+				rs = pstmt.executeQuery();            
 				
 				//결과처리
 				while(rs.next()) {

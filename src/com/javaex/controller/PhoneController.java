@@ -14,7 +14,7 @@ import com.javaex.dao.PhoneDao;
 import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVo;
 
-@WebServlet("/pbc")  //임의의 주소를 주었다. 파일이름과 대문자/소문자 동일해야 한다. 이름을 바꿀수도 있다.
+@WebServlet("/pbc")  //임의의 주소를 주었다. 파일이름과 대문자/소문자 동일해야 한다. 이름은 바꿀수도 있다.
 public class PhoneController extends HttpServlet { //상속받았다:extends HttpServlet
     
 	/* Get 방식 구현 */
@@ -30,8 +30,6 @@ public class PhoneController extends HttpServlet { //상속받았다:extends Htt
 		String action = request.getParameter("action");
 		System.out.println(action);
 		
-		
-		//action은 문자열
 		/*
 		if("list".equals(action)) { //action.equals("list") -> "list".equals(action) : null이 생기지 않게 위치 바꾼다.
 			System.out.println("리스트 처리");
@@ -52,7 +50,7 @@ public class PhoneController extends HttpServlet { //상속받았다:extends Htt
 			//rd.forward(request, response);
 			
 			WebUtil.forward(request, response, "./WEB-INF/list.jsp");
-
+		}
 		*/		
 		
 		 if("wform".equals(action)) {
