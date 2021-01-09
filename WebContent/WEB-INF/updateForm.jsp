@@ -25,10 +25,14 @@
 			이름(name):<input type="text" name="name" value="<%=personVo.getName()%>"><br> 
 			핸드폰(hp):<input type="text" name="hp" value="<%=personVo.getHp()%>"><br>
 			회사(company):<input type="text" name="company" value="<%=personVo.getCompany()%>"><br>
-			action:<input type="text" name="action" value="update"> <!--hidden으로 수정-->
+			
+			id, action:
+			<input type="hidden" name="id" value="<%=personVo.getPersonId()%>"> <!-- 넘어갈 id값이 없었다 -->
+			<input type="text" name="action" value="update">  <!--hidden으로 수정-->
 			<button type="submit">수정</button>
 		</form>
-		
+		 //id값이 안 넘어가고 있다.
+		 
 		<br>
 		<a href="/phonebook2/pbc?action=list">리스트 바로 가기</a>
 	

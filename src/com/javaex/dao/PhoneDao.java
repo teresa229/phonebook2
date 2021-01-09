@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.javaex.vo.PersonVo;
 
-
 public class PhoneDao {
 	
 	//필드
@@ -22,7 +21,6 @@ public class PhoneDao {
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
 	private String id = "phonedb";
 	private String pw = "phonedb";
-	
 	
 	//생성자
 	//메소드-g/s
@@ -126,14 +124,14 @@ public class PhoneDao {
 			String query = "";
 			query += " insert into person  ";
 			query += " values (seq_person_id.nextval, ?, ?, ?)";
-			
+
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, pvo.getName());
 			pstmt.setString(2, pvo.getHp());
 			pstmt.setString(3, pvo.getCompany());
-			
+
 			count = pstmt.executeUpdate();
-			
+
 			// 4. 결과처리 
 			System.out.println("[ " + count + " 건 등록되었습니다. ]");
 			System.out.println("");
@@ -211,7 +209,7 @@ public class PhoneDao {
 			
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, personId);
-			
+
 			count = pstmt.executeUpdate();
 			
 		    // 4.결과처리
@@ -320,10 +318,7 @@ public class PhoneDao {
 			}catch (SQLException e) {                                                                              
 			    System.out.println("error:" + e);                                                                   
 			}    
-			
 			close();
 			return personVo;
 	 }
-	
-	
 }
