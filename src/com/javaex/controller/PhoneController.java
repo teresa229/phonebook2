@@ -20,7 +20,7 @@ public class PhoneController extends HttpServlet { //상속받았다:extends Htt
 	/* Get 방식 구현 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//언어 정리
+		//언어 정리 utf-8
 		response.setContentType("text/html;charset=utf-8");
 		
 		//컨트롤러 테스트
