@@ -31,7 +31,6 @@ public class WebUtil {
 	public static void redirect(HttpServletRequest request,
 			                   HttpServletResponse response,
 			                   String url) throws IOException { //예외처리
-		
 		response.sendRedirect(url);
 	}
 }
