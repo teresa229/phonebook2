@@ -67,15 +67,7 @@ public class PhoneDao {
 		getConnection();
 		
 		try {
-		    /*
-			select  person_id,
-			        name,
-			        hp,
-			        company
-			from person
-			order by person_id;
-			*/
-			
+
 			String query = "";
 			query += " select  person_id, ";
 			query += "         name,      ";
@@ -102,8 +94,7 @@ public class PhoneDao {
 		} catch (SQLException e) {
 		    System.out.println("error:" + e);
 		}
-		
-		//자원정리
+
 		close();
 		
 		return phoneList;
@@ -139,8 +130,7 @@ public class PhoneDao {
 		} catch (SQLException e) {                                                 
 		    System.out.println("error:" + e);                                      
 		}                                                                          
-		                                                                           
-		//자원정리                                                                     
+		                                                                                                                                        
 		close();                                                                   
 		
 		return count;
@@ -152,14 +142,7 @@ public class PhoneDao {
 		getConnection();
 		
 		try {
-		    /*
-			update person
-			set name = '유정재',
-			hp = '010-9999-9999',
-			company = '02-9999-9999'
-			where person_id = 4;
-			*/
-			
+
 			String query = "";
 			query += " update person       ";
 			query += " set name = ? ,      ";
@@ -196,11 +179,7 @@ public class PhoneDao {
 		getConnection();
 		
 		try {
-		    /*
-			delete from person
-			where person_id = 5;
-			*/
-			
+
 			String query = "";
 			query += " delete from person  ";
 			query += " where person_id = ? ";
@@ -230,18 +209,6 @@ public class PhoneDao {
 		getConnection();                                                                                        
 		                                                                                                        
 		try {                                                                                                   
-		    // 3. SQL문 준비 / 바인딩 / 실행  
-			/*
-			select  person_id,
-			        name,
-			        hp,
-			        company
-			from person
-			where name like '%유%'
-			or hp like '%유%'
-			or company like '%유%'
-			order by person_id;
-			*/
 			
 			String query = "";
 			query += " select  person_id,  ";
