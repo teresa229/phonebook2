@@ -5,7 +5,7 @@
 <%@ page import ="com.javaex.vo.PersonVo" %>
 
 <%
-		PersonVo personVo = (PersonVo)request.getAttribute("pVo");
+		PersonVo personVo = (PersonVo)request.getAttribute("pvo");
 
    		System.out.println("====updateForm.jsp====");
 		System.out.println(); //println은 toString을 불러오게 약속이 되어있다.
