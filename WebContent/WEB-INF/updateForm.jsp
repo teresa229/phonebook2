@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<%--
 <%@ page import ="com.javaex.vo.PersonVo" %>
 
 <%
-		PersonVo personVo = (PersonVo)request.getAttribute("updateF");
+		PersonVo personVo = (PersonVo)request.getAttribute("pVo");
 
    		System.out.println("====updateForm.jsp====");
 		System.out.println(); //println은 toString을 불러오게 약속이 되어있다.
 %>
+--%>
 
 <!DOCTYPE html>
 <html>
@@ -22,12 +25,12 @@
 		</p>
 		
 		<form action="/phonebook2/pbc" method="get">
-			이름(name):<input type="text" name="name" value="<%=personVo.getName()%>"><br> 
-			핸드폰(hp):<input type="text" name="hp" value="<%=personVo.getHp()%>"><br>
-			회사(company):<input type="text" name="company" value="<%=personVo.getCompany()%>"><br>
+			이름(name):<input type="text" name="name" value="${requestScope.pvo.name}"><br>   <!-- personVo.getName() -->
+			핸드폰(hp):<input type="text" name="hp" value="${requestScope.pvo.hp}"><br>  <!-- personVo.getHp() -->
+			회사(company):<input type="text" name="company" value="${requestScope.pvo.company}"><br>  <!-- personVo.getCompany() -->
 			
 			id, action:
-			<input type="hidden" name="id" value="<%=personVo.getPersonId()%>"> <!-- 넘어갈 id값이 없었다 -->
+			<input type="hidden" name="id" value="${requestScope.pvo.personId}"> <!-- 넘어갈 id값이 없었다 -->  <!-- personVo.getPersonId() -->
 			<input type="text" name="action" value="update">  <!--hidden으로 수정-->
 			<button type="submit">수정</button>
 		</form>

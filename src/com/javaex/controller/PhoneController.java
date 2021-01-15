@@ -119,7 +119,7 @@ public class PhoneController extends HttpServlet {
    			PersonVo personVo = phoneDao.getPerson(personId);
    			
    			/* attribute: 데이터 전달 */
-   			request.setAttribute("updateF", personVo);
+   			request.setAttribute("pvo", personVo);
    			   			
    			/* forward */
    			//RequestDispatcher rd = request.getRequestDispatcher("./WEB-INF/updateForm.jsp");
